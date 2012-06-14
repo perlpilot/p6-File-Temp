@@ -4,7 +4,7 @@ our $VERSION = '0.01';
 
 # Characters used to create temporary file/directory names
 constant FILECHARS = 'a'..'z', 'A'..'Z', 0..9, '_';
-constant MAX-RETRIES = 1000;
+constant MAX-RETRIES = 10;
 
 sub gen-random($n) {
     return join '', map { FILECHARS[Int(rand * +FILECHARS)] }, ^$n;
@@ -26,7 +26,7 @@ sub tempfile (
         $tempfile ~~ s/'*' ** 4..*/{gen-random(~$/.chars)}/;
         my $filename = "$tempdir/$prefix$tempfile$suffix";
         next if $filename.IO ~~ :e;
-        my $fh = open $filename, :w or next;
+        my $fh = try { open $filename, :w ; CATCH { next } };
         push @open-files, $filename if $unlink;
         return $filename,$fh;
     }
