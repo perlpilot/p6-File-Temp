@@ -1,0 +1,9 @@
+{
+    "name" : "File::Temp",
+    "version" : "0.01",
+    "description" : "Create temporary files/directories",
+    "depends" : [ ],
+    "repo-type" : "git",
+    "source-url" : ""
+}
+
