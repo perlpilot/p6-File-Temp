@@ -1,6 +1,4 @@
-module Temp;
-
-our $VERSION = '0.01';
+module Temp:ver<0.01>;
 
 # Characters used to create temporary file/directory names
 constant FILECHARS = 'a'..'z', 'A'..'Z', 0..9, '_';
