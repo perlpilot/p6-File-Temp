@@ -19,9 +19,10 @@ sub tempfile (
     :$template = $tmpl          # required named template
 ) is export {
 
-    for ^MAX-RETRIES {
+    my $count = MAX-RETRIES;
+    while ($count--) {
         my $tempfile = $template;
-        $tempfile ~~ s/'*' ** 4..*/{gen-random(~$/.chars)}/;
+        $tempfile ~~ s/ '*' ** 4..* /{ gen-random($/.chars) }/;
         my $filename = "$tempdir/$prefix$tempfile$suffix";
         next if $filename.IO ~~ :e;
         my $fh = try { open $filename, :w ; CATCH { next } };
