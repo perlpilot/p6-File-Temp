@@ -25,7 +25,7 @@ sub tempfile (
         $tempfile ~~ s/ '*' ** 4..* /{ gen-random($/.chars) }/;
         my $filename = "$tempdir/$prefix$tempfile$suffix";
         next if $filename.IO ~~ :e;
-        my $fh = try { open $filename, :w ; CATCH { next } };
+        my $fh = try { CATCH { next }; open $filename, :w;  };
         push @open-files, $filename if $unlink;
         return $filename,$fh;
     }
