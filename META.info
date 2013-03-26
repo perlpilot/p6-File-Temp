@@ -4,6 +4,7 @@
     "description" : "Create temporary files",
     "depends" : [ ],
     "repo-type" : "git",
-    "source-url" : "https://github.com/perlpilot/p6-File-Temp.git"
+    "source-url" : "https://github.com/perlpilot/p6-File-Temp.git",
+    "author" : "Jonathan Scott Duff"
 }
 
