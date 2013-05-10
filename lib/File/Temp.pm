@@ -10,9 +10,20 @@ sub gen-random($n) {
 
 my @open-files;
 
+sub find-tempdir() {
+    given $*OS {
+        when 'MSWin32' {
+            return %*ENV<TEMP> || "C:/Temp";
+        }
+        default {
+            return "/tmp";
+        }
+    }
+}
+
 sub tempfile (
     $tmpl? = '*' x 10,          # positional template
-    :$tempdir? = "/tmp",        # where to create these temp files
+    :$tempdir? = find-tempdir(),        # where to create these temp files
     :$prefix? = '',             # filename prefix
     :$suffix? = '',             # filename suffix
     :$unlink?  = 1,             # remove when program exits?
@@ -23,8 +34,8 @@ sub tempfile (
     while ($count--) {
         my $tempfile = $template;
         $tempfile ~~ s/ '*' ** 4..* /{ gen-random($/.chars) }/;
-        my $filename = "$tempdir/$prefix$tempfile$suffix";
-        next if $filename.IO ~~ :e;
+        my $filename = IO::Path.new($tempdir).child("$prefix$tempfile$suffix");
+        next if $filename ~~ :e;
         my $fh = try { CATCH { next }; open $filename, :w;  };
         push @open-files, $filename if $unlink;
         return $filename,$fh;
@@ -37,4 +48,3 @@ END {
         unlink($f);
     }
 }
-
