@@ -15,11 +15,7 @@ END {
     }
 }
 
-exit;
-
-END { say "test END foo" }
 use File::Temp;
-END { say "test END bar" }
 
 
 my ($name,$handle) = tempfile;
