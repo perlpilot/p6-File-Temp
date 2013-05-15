@@ -12,7 +12,7 @@ my @open-files;
 
 sub tempfile (
     $tmpl? = '*' x 10,          # positional template
-    :$tempdir? = "/tmp",        # where to create these temp files
+    :$tempdir? = $*TMPDIR,      # where to create these temp files
     :$prefix? = '',             # filename prefix
     :$suffix? = '',             # filename suffix
     :$unlink?  = 1,             # remove when program exits?
