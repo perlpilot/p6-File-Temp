@@ -1,4 +1,4 @@
-module Temp:ver<0.01>;
+module File::Temp:ver<0.01>;
 
 # Characters used to create temporary file/directory names
 constant FILECHARS = 'a'..'z', 'A'..'Z', 0..9, '_';
@@ -12,7 +12,7 @@ my @open-files;
 
 sub tempfile (
     $tmpl? = '*' x 10,          # positional template
-    :$tempdir? = "/tmp",        # where to create these temp files
+    :$tempdir? = $*TMPDIR,      # where to create these temp files
     :$prefix? = '',             # filename prefix
     :$suffix? = '',             # filename suffix
     :$unlink?  = 1,             # remove when program exits?
