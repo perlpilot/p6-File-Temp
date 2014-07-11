@@ -17,10 +17,10 @@ END {
 }
 
 
-# TODO Remove the eval; this is a hack to work around improper ordering
+# TODO Remove the EVAL; this is a hack to work around improper ordering
 #      of END phasers in Rakudo
 
-eval '
+EVAL '
 use File::Temp;
 
 my ($name,$handle) = tempfile;
