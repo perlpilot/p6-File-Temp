@@ -1,11 +1,11 @@
-module File::Temp:ver<0.01>;
+module File::Temp:ver<0.02>;
 
 # Characters used to create temporary file/directory names
-constant FILECHARS = 'a'..'z', 'A'..'Z', 0..9, '_';
+my @filechars = 'a'..'z', 'A'..'Z', 0..9, '_';
 constant MAX-RETRIES = 10;
 
 sub gen-random($n) {
-    return join '', map { FILECHARS[Int(rand * +FILECHARS)] }, ^$n;
+    @filechars.roll($n).join
 }
 
 my @open-files;
