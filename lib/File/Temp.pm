@@ -25,7 +25,7 @@ sub tempfile (
     while ($count--) {
         my $tempfile = $template;
         $tempfile ~~ s/ '*' ** 4..* /{ gen-random($/.chars) }/;
-        my $filename = $*SPEC.catpath($tempdir,"$prefix$tempfile$suffix");
+        my $filename = $*SPEC.catpath('', $tempdir,"$prefix$tempfile$suffix");
         next if $filename.IO ~~ :e;
         my $fh = try { CATCH { next }; open $filename, :rw, :exclusive;  };
         push @open-files, $filename if $unlink;
@@ -46,7 +46,7 @@ our sub tempdir (
     while ($count--) {
         my $tempdir_name = $template;
         $tempdir_name ~~ s/ '*' ** 4..* /{ gen-random($/.chars) }/;
-        my $dirpath = $*SPEC.catpath($tempdir,"$prefix$tempdir_name");
+        my $dirpath = $*SPEC.catpath('', $tempdir,"$prefix$tempdir_name");
         next if $dirpath.IO ~~ :e;
         try { CATCH { next }; mkdir($dirpath) };
         push @open-files, $dirpath if $unlink;

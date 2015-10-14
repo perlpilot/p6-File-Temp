@@ -1,6 +1,8 @@
 File::Temp
 ==========
 
+[![Build Status](https://travis-ci.org/perlpilot/p6-file-temp.svg?branch=master)](https://travis-ci.org/perlpilot/p6-file-temp)
+
 Create temporary files.
 This module is loosely based on the Perl 5 module of the same name.
 
