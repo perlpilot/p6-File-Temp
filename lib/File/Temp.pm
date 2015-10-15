@@ -17,7 +17,7 @@ sub make-temp($type, $template, $tempdir, $prefix, $suffix, $unlink) {
     while ($count--) {
         my $tempfile = $template;
         $tempfile ~~ s/ '*' ** 4..* /{ gen-random($/.chars) }/;
-        my $name = $*SPEC.catfile($tempdir,"$prefix$tempfile$suffix");
+        my $name = $*SPEC.catfile('',$tempdir,"$prefix$tempfile$suffix");
         next if $name.IO ~~ :e;
         my $fh;
         if $type eq 'file' {
