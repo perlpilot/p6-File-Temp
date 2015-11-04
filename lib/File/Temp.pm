@@ -6,17 +6,13 @@ use File::Directory::Tree;
 my @filechars = flat('a'..'z', 'A'..'Z', 0..9, '_');
 constant MAX-RETRIES = 10;
 
-sub gen-random($n) {
-    @filechars.roll($n).join
-}
-
 my @open-files;
 
 sub make-temp($type, $template, $tempdir, $prefix, $suffix, $unlink) {
     my $count = MAX-RETRIES;
     while ($count--) {
         my $tempfile = $template;
-        $tempfile ~~ s/ '*' ** 4..* /{ gen-random($/.chars) }/;
+        $tempfile ~~ s/ '*' ** 4..* /{ @filechars.roll($/.chars).join }/;
         my $name = $*SPEC.catfile($tempdir,"$prefix$tempfile$suffix");
         next if $name.IO ~~ :e;
         my $fh;
