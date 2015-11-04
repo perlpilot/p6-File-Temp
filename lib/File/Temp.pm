@@ -67,3 +67,35 @@ END {
     }
 }
 
+
+=begin pod
+=NAME       File::Temp
+=SYNOPSIS
+
+    # Generate a temp file in a temp dir
+    my ($filename,$filehandle) = tempfile;
+
+    # specify a template for the filename
+    #  * are replaced with random characters
+    my ($filename,$filehandle) = tempfile("******");
+
+    # Automatically unlink files at end of program (this is the default)
+    my ($filename,$filehandle) = tempfile("******", :unlink);
+
+    # Specify the directory where the tempfile will be created
+    my ($filename,$filehandle) = tempfile(:tempdir("/path/to/my/dir"));
+
+    # don't unlink this one
+    my ($filename,$filehandle) = tempfile(:tempdir('.'), :!unlink);
+
+    # specify a prefix and suffix for the filename
+    my ($filename,$filehandle) = tempfile(:prefix('foo'), :suffix(".txt"));
+
+=DESCRIPTION
+
+This module exports two routines:
+=item tempfile
+=item tempdir
+
+=AUTHOR Jonathan Scott Duff <duff@pobox.com>
+=end pod
