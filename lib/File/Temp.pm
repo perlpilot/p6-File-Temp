@@ -1,4 +1,4 @@
-unit module File::Temp:ver<0.0.2>;
+unit module File::Temp:ver<0.0.3>;
 
 use File::Directory::Tree;
 
@@ -41,9 +41,11 @@ sub make-temp($type, $template, $tempdir, $prefix, $suffix, $unlink) {
         my $fh;
         if $type eq 'file' {
             $fh = try { CATCH { next }; open $name, :rw, :exclusive;  };
+            chmod(0o600,$name);
         }
         else {
             try { CATCH { next }; mkdir($name) };
+            chmod(0o700,$name);
         }
         if $unlink {
             $roster-lock.protect: {
