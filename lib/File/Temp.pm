@@ -44,8 +44,7 @@ sub make-temp($type, $template, $tempdir, $prefix, $suffix, $unlink) {
             chmod(0o600,$name);
         }
         else {
-            try { CATCH { next }; mkdir($name) };
-            chmod(0o700,$name);
+            try { CATCH { next }; mkdir($name, 0o700) };
         }
         if $unlink {
             $roster-lock.protect: {
