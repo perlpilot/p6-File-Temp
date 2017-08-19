@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/github/perlpilot/p6-File-Temps?svg=true)](https://ci.appveyor.com/project/perlpilot/p6-File-Temps/branch/master)
+
 File::Temp
 ==========
 
@@ -38,5 +40,3 @@ This module exports 2 routines:
 `tempfile`  creates a temporary file and returns the filename and a filehandle open for reading and writing on that file.
 
 `tempdir` creates a temporary directory and returns the directory name.
-
-
