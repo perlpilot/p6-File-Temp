@@ -1,5 +1,5 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/github/perlpilot/p6-File-Temps?svg=true)](https://ci.appveyor.com/project/perlpilot/p6-File-Temps/branch/master)
-t pus
+
 NAME
 ====
 
