@@ -62,7 +62,7 @@ sub make-temp($type, $template, $tempdir, $prefix, $suffix, $unlink) {
         }
         return $type eq 'file' ?? ($name,$fh) !! $name;
     }
-    fail "Unable to open temporary $type after {MAX-RETRIES} attempts";
+    fail qq{Unable to open temporary $type after {MAX-RETRIES} attempts within "$tempdir"};
 }
 
 sub tempfile (
