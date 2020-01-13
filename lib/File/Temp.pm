@@ -1,4 +1,4 @@
-unit module File::Temp:ver<0.0.6>;
+unit module File::Temp:ver<0.0.7>;
 
 use File::Directory::Tree;
 
