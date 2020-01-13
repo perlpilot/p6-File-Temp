@@ -1,7 +1,7 @@
 {
   "name": "File::Temp",
   "description": "Create temporary files & directories",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "perl": "6.*",
   "authors": [
     "Jonathan Scott Duff <duff@pobox.com>"
